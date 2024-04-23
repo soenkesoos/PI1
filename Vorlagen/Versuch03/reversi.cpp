@@ -221,11 +221,32 @@ void zugAusfuehren(int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpiel
             // allen Richtungen in Ihre eigenen Steine umgewandelt werden
             //
             // Hier erfolgt jetzt Ihre Implementierung ...
+
+            if (i == 0 && j == 0) continue; // keine Richtung
+            int distance = 1;
+            while (aufSpielfeld(posX + i * distance, posY + j * distance) && spielfeld[posY + j * distance][posX + i * distance] == gegner)
+            {
+                distance++;   
+            }
+            if(spielfeld[posY + j * distance][posX + i * distance] == aktuellerSpieler && distance >= 2) {
+                for (int k = 1; k < distance; k++)
+                {
+                    spielfeld[posY + j * k][posX + i * k] = aktuellerSpieler;
+                }
+            }
         }
     }
 
 }
 
+
+/**
+ * @brief Funktion, die die Anzahl der moeglichen Zuege berechnet
+ *
+ * @param spielfeld Das aktuelle Spielfeld
+ * @param aktuellerSpieler Der aktuelle Spieler
+ * @return Anzahl der moeglichen Zuege
+ */
 int moeglicheZuege(const int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpieler)
 {
     // Hier erfolgt jetzt Ihre Implementierung ...
@@ -233,7 +254,13 @@ int moeglicheZuege(const int spielfeld[GROESSE_Y][GROESSE_X], const int aktuelle
     return 0;
 }
 
-
+/**
+ * @brief Funktion, die den naechsten Zug eines menschlichen Spielers einliest
+ * 
+ * @param spielfeld Das aktuelle Spielfeld
+ * @param aktuellerSpieler Der aktuelle Spieler
+ * @return true, wenn ein Zug moeglich ist, sonst false
+*/
 bool menschlicherZug(int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpieler)
 {
     if (moeglicheZuege(spielfeld, aktuellerSpieler) == 0)
@@ -278,7 +305,11 @@ bool menschlicherZug(int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpi
     return true;
 }
 
-
+/**
+ * @brief Funktion, die das Spiel durchfuehrt
+ *
+ * @param spielerTyp Feld, das Informationen ueber den Typ des Spielers enthaelt. MENSCH(=1) oder COPMUTER(=2)
+ */
 void spielen(const int spielerTyp[2])
 {
     int spielfeld[GROESSE_Y][GROESSE_X];

@@ -22,10 +22,22 @@
 *.swn
 *.bak
 *.orig
+*.o
 
 # Ignoriere Betriebssystem spezifische Dateien
 .DS_Store
 Thumbs.db
 
 #build ordner
-build/
+Vorlagen/Versuch00/build/
+Vorlagen/Versuch01_Teil1/build/
+Vorlagen/Versuch01_Teil2/build/
+Vorlagen/Versuch02_Teil2/build/
+Vorlagen/Versuch02_Teil3/build/
+Vorlagen/Versuch03/build/
+Vorlagen/Versuch04/build/
+Vorlagen/Versuch05/build/
+Vorlagen/Versuch06/build/
+Vorlagen/Versuch07/build/
+Vorlagen/Versuch08/build/
+Vorlagen/Versuch09/build/
