@@ -372,6 +372,59 @@ void spielen(const int spielerTyp[2])
     }
 }
 
+
+/**
+ * @brief Funktion, die den Spielertyp auswaehlt
+ *
+ * @param spielerTyp Feld, das Informationen ueber den Typ des Spielers enthaelt. MENSCH(=1) oder COPMUTER(=2)
+ */
+void selectGameType(int spielerTyp[2]) 
+    {
+    std::string eingabe;
+    std::cout << "Spieler 1: Mensch(1) oder Computer(2)? ";
+    std::cin >> eingabe;
+    if (eingabe == "1")
+    {
+        spielerTyp[0] = MENSCH;
+    }
+    else
+    {
+        spielerTyp[0] = COMPUTER;
+    }
+
+    std::cout << "Spieler 2: Mensch(1) oder Computer(2)? ";
+    std::cin >> eingabe;
+    if (eingabe == "1")
+    {
+        spielerTyp[1] = MENSCH;
+    }
+    else
+    {
+        spielerTyp[1] = COMPUTER;
+    }
+
+}
+
+/**
+ * @brief Funktion, die den Benutzer fragt, ob er nochmal spielen moechte
+ *
+ * @return true, wenn der Benutzer nochmal spielen moechte, sonst false
+ */
+bool erneutSpielen()
+{
+    std::string eingabe;
+    std::cout << "Nochmal spielen? (j/n) ";
+    std::cin >> eingabe;
+    if (eingabe == "j")
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 int main()
 {
     if (TEST == 1)
@@ -397,8 +450,17 @@ int main()
 
     zeigeSpielfeld(spielfeld);*/
 
-    int spielerTyp[2] = { MENSCH, COMPUTER };  // Feld, das Informationen ueber den Typ des Spielers enthaelt. MENSCH(=1) oder COPMUTER(=2)
-    spielen(spielerTyp);
+    bool spielenBool = true;
+    while (spielenBool)
+    {
+        int spielerTyp[2] = { MENSCH, COMPUTER };  // Feld, das Informationen ueber den Typ des Spielers enthaelt. MENSCH(=1) oder COPMUTER(=2)
+        selectGameType(spielerTyp);
+        spielen(spielerTyp);
+        spielenBool = erneutSpielen();
+    }
+    
+
+    
     
     // Hier erfolgt jetzt Ihre Implementierung ...
     
