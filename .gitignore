@@ -1,0 +1,31 @@
+# .gitignore
+
+# Ignoriere Build-Dateien
+*.o
+*.out
+*.exe
+*.a
+*.so
+
+# Ignoriere Projektdateien
+*.pro.user
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignoriere IDE/Editor spezifische Dateien
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.orig
+
+# Ignoriere Betriebssystem spezifische Dateien
+.DS_Store
+Thumbs.db
+
+#build ordner
+build/

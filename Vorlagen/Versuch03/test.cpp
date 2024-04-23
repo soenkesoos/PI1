@@ -649,7 +649,7 @@ bool ganzenTestAusfuehren()
         int spieler[2] = {1, 1};
         int korrektesErgebnis[2] = {4, 5};
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; i++) 
         {
             bool tmp_Ergebnis = moeglicheZuegeTest(eingabeFeld[i], spieler[i], korrektesErgebnis[i], i);
             if(gesamtErgebnis == true && tmp_Ergebnis == false)
