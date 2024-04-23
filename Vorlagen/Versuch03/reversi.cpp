@@ -336,10 +336,35 @@ void spielen(const int spielerTyp[2])
     // solange noch Zuege bei einem der beiden Spieler moeglich sind
     //
     // Hier erfolgt jetzt Ihre Implementierung ...
-    
+    while (moeglicheZuege(spielfeld, aktuellerSpieler) > 0)
+    {
+        if (spielerTyp[aktuellerSpieler - 1] == MENSCH)
+        {
+            menschlicherZug(spielfeld, aktuellerSpieler);
+        }
+        else
+        {
+            computerZug(spielfeld, aktuellerSpieler);
+        }
+        zeigeSpielfeld(spielfeld);
+        aktuellerSpieler = 3 - aktuellerSpieler;
+    }
     switch (gewinner(spielfeld))
     {
-        // Hier erfolgt jetzt Ihre Implementierung ...
+        case 0:
+            std::cout << "Unentschieden!" << std::endl;
+            break;
+        case 1:
+            std::cout << "Spieler 1 hat gewonnen!" << std::endl;
+            break;
+        case 2:
+            std::cout << "Spieler 2 hat gewonnen!" << std::endl;
+            break;
+        default:
+            std::cout << "Unzulaessige Daten im Spielfeld!" << std::endl;
+            std::cout << "Abbruch .... " << std::endl;
+            exit(0);
+            break;
     }
 }
 
@@ -362,15 +387,15 @@ int main()
     
     // Die folgenden drei Zeilen werden auskommentiert oder geloescht, nachdem Sie die Funktion spielen()
     // implementiert haben (waeren sonst doppelt)
-    int spielfeld[GROESSE_Y][GROESSE_X];
+    /*int spielfeld[GROESSE_Y][GROESSE_X];
 
     initialisiereSpielfeld(spielfeld);
 
-    zeigeSpielfeld(spielfeld);
+    zeigeSpielfeld(spielfeld);*/
 
-    // int spielerTyp[2] = { COMPUTER, COMPUTER };  // Feld, das Informationen ueber den Typ des Spielers enthaelt. MENSCH(=1) oder COPMUTER(=2)
-    // spielen(spielerTyp);
-    //
+    int spielerTyp[2] = { MENSCH, COMPUTER };  // Feld, das Informationen ueber den Typ des Spielers enthaelt. MENSCH(=1) oder COPMUTER(=2)
+    spielen(spielerTyp);
+    
     // Hier erfolgt jetzt Ihre Implementierung ...
     
     return 0;
