@@ -180,6 +180,10 @@ bool zugGueltig(const int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSp
     {
         return false;
     }
+    if(!aufSpielfeld(posX, posY)) // ist das Feld auf dem Spielfeld?
+    {
+        return false;
+    }
 
     // Alle Richtungen ueberpruefen bis ein "Grund" gefunden wird, weshalb der Zug gueltig ist
     for (int j = -1; j <= 1; j++)
