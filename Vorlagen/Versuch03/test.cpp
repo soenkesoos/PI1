@@ -72,7 +72,7 @@ bool gewinnerTest(const int eingabefeld[GROESSE_Y][GROESSE_X], const int richtig
 bool aufSpielfeldTest(const int posX, const int posY, const bool richtig, const int testNummer)
 {
     std::cout << "Fuehre Test " << testNummer + 1 << " fuer 'aufSpielfeld()' aus ..." << std::endl;
-    std::cout << "----------------------------------" << std::endl << std::endl;
+    std::cout << "----------------------------------" << std::endl;
     bool ergebnis = aufSpielfeld(posX, posY);
     if (ergebnis == richtig)
     {
@@ -113,7 +113,7 @@ bool zugGueltigTest(const int eingabeFeld[GROESSE_Y][GROESSE_X], const int spiel
                      const int posY, const bool richtig, const int testNummer)
 {
     std::cout << "Fuehre Test " << testNummer + 1 << " fuer 'zugGueltig()' aus ..." << std::endl;
-    std::cout << "----------------------------------" << std::endl << std::endl;
+    std::cout << "----------------------------------" << std::endl;
 
     bool ergebnis = zugGueltig(eingabeFeld, spieler, posX, posY);
     if(ergebnis == richtig)
@@ -157,7 +157,7 @@ bool zugAusfuehrenTest(int eingabeFeld[GROESSE_Y][GROESSE_X], const int ergebnis
 {
 
     std::cout << "Fuehre Test " << testNummer + 1 << " fuer 'zugAusfuehren()' aus ..." << std::endl;
-    std::cout << "----------------------------------" << std::endl << std::endl;
+    std::cout << "----------------------------------" << std::endl;
 
     zugAusfuehren(eingabeFeld, spieler, posX, posY);
     for (int i = 0; i < GROESSE_Y; i++)
@@ -178,8 +178,8 @@ bool zugAusfuehrenTest(int eingabeFeld[GROESSE_Y][GROESSE_X], const int ergebnis
             }
         }
     }
-
-    return 0;
+    std::cout << "Test " << testNummer + 1 << " bestanden!" << std::endl << std::endl;
+    return true;
 }
 
 
@@ -200,7 +200,7 @@ bool moeglicheZuegeTest(const int eingabeFeld[GROESSE_Y][GROESSE_X], const int s
 {
 
     std::cout << "Fuehre Test " << testNummer + 1 << " fuer 'moeglicheZuege()' aus ..." << std::endl;
-    std::cout << "----------------------------------" << std::endl << std::endl;
+    std::cout << "----------------------------------" << std::endl;
 
     int tmp_moeglicheZuege = moeglicheZuege(eingabeFeld, spieler);
     if (tmp_moeglicheZuege != richtig)
@@ -215,11 +215,12 @@ bool moeglicheZuegeTest(const int eingabeFeld[GROESSE_Y][GROESSE_X], const int s
             std::cout << "falsches Ergebnis: " << tmp_moeglicheZuege << std::endl;
             std::cout << "richtiges Ergebnis: " << richtig << std::endl;
         }
+        return false;
         
     }
     
-
-    return 0;
+    std::cout << "Test " << testNummer + 1 << " bestanden!" << std::endl << std::endl;
+    return true;
 }
 
 /**
@@ -279,7 +280,7 @@ bool ganzenTestAusfuehren()
             }
         }
 
-        std::cout << "Ende des Tests fuer 'gewinner()'" << std::endl << std::endl;
+        std::cout << "Ende des Tests fuer 'gewinner()'" << std::endl << std::endl << std::endl;
     }
 
 // ---------- TESTE POSITION IM FELD---------- //
@@ -295,6 +296,7 @@ bool ganzenTestAusfuehren()
                 gesamtErgebnis = false;
             }
         }
+        std::cout << "Ende des Tests fuer 'aufSpielfeld()'" << std::endl << std::endl << std::endl;
     }
     
 // ---------- TESTE ZUG GUELTIG ---------- //
@@ -385,7 +387,7 @@ bool ganzenTestAusfuehren()
             }
         }
 
-        std::cout << "Ende des Tests fuer 'zugAusfuehren()'" << std::endl << std::endl;
+        std::cout << "Ende des Tests fuer 'zugAusfuehren()'" << std::endl << std::endl << std::endl;
     }
 
 
@@ -618,7 +620,7 @@ bool ganzenTestAusfuehren()
             }
         }
 
-        std::cout << "Ende des Tests fuer 'zugAusfuehren()'" << std::endl << std::endl;
+        std::cout << "Ende des Tests fuer 'zugAusfuehren()'" << std::endl << std::endl << std::endl;
     }
 
 
@@ -658,8 +660,9 @@ bool ganzenTestAusfuehren()
             }
         }
 
-        std::cout << "Ende des Tests fuer 'zugAusfuehren()'" << std::endl << std::endl;
+        std::cout << "Ende des Tests fuer 'zugAusfuehren()'" << std::endl << std::endl << std::endl;
     }
+
 
     return gesamtErgebnis;
 }

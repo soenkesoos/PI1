@@ -181,7 +181,7 @@ bool zugGueltig(const int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSp
         return false;
     }
 
-    // Alle Richtungen ueberpruefen bis erster gueltiger Zug gefunden
+    // Alle Richtungen ueberpruefen bis ein "Grund" gefunden wird, weshalb der Zug gueltig ist
     for (int j = -1; j <= 1; j++)
     {
         for (int i = -1; i <= 1; i++)
@@ -229,7 +229,7 @@ void zugAusfuehren(int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpiel
                 distance++;   
             }
             if(spielfeld[posY + j * distance][posX + i * distance] == aktuellerSpieler && distance >= 2) {
-                for (int k = 1; k < distance; k++)
+                for (int k = 0; k < distance; k++)
                 {
                     spielfeld[posY + j * k][posX + i * k] = aktuellerSpieler;
                 }
@@ -250,8 +250,21 @@ void zugAusfuehren(int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpiel
 int moeglicheZuege(const int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpieler)
 {
     // Hier erfolgt jetzt Ihre Implementierung ...
+
+    // probiert auf jedem Feld, ob ein Zug moeglich ist
+    int counter = 0;
+    for (int j = 0; j < GROESSE_Y; j++)
+    {
+        for (int i = 0; i < GROESSE_X; i++)
+        {
+            if (zugGueltig(spielfeld, aktuellerSpieler, j, i))
+            {
+                counter++;
+            }
+        }
+    }
     
-    return 0;
+    return counter;
 }
 
 /**
