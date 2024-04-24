@@ -1,7 +1,7 @@
 //
 // Praktikum Informatik 1 
 // 
-// Versuch 04: Einführung Klasse
+// Versuch 04: Einfï¿½hrung Klasse
 //
 // Datei:  Vektor.h
 // Inhalt: Headerdatei der Klasse Vektor
@@ -13,6 +13,10 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+
+/**
+ * @brief Class representing a 3D vector
+ */
 
 class Vektor
 {

@@ -9,6 +9,13 @@
 
 #include "Vektor.h"
 
+/**
+ * @brief Construct a new Vektor::Vektor object
+ * 
+ * @param inX The x-component of the vector
+ * @param inY The y-component of the vector
+ * @param inZ The z-component of the vector
+*/
 Vektor::Vektor(double inX, double inY, double inZ) : x(inX), y(inY), z(inZ)
 {
 
@@ -90,3 +97,6 @@ void Vektor::rotiereUmZ(const double rad)
     y = rotMat[1].x * xOld + rotMat[1].y * yOld + rotMat[1].z * zOld;
     z = rotMat[2].x * xOld + rotMat[2].y * yOld + rotMat[2].z * zOld;
 }
+
+
+ 
