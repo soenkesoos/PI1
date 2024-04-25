@@ -14,7 +14,7 @@ using namespace std;
 
 string verschluesseln(const char schluessel[2][26], string wort)
 {
-	transform(wort.begin(), wort.end(), wort.begin(), ::toupper);
+	transform(wort.begin(), wort.end(), wort.begin(), ::toupper);	// !!!!!!wenn diese Zeile Errors wirft einfach entfernen, ist nur zur sicherheit hier
 	for (char& c : wort)	// für jeden char im string
 	{
 		for (int i = 0; i < 26; i++)	// für jeden Buchstaben im Schluessel...
@@ -32,7 +32,7 @@ string verschluesseln(const char schluessel[2][26], string wort)
 
 string entschluesseln(const char schluessel[2][26], string wort)
 {
-	transform(wort.begin(), wort.end(), wort.begin(), ::toupper);
+	transform(wort.begin(), wort.end(), wort.begin(), ::toupper);	// !!!!!!wenn diese Zeile Errors wirft einfach entfernen, ist nur zur sicherheit hier
 	for (char& c : wort)	// für jeden char im string
 	{
 		for (int i = 0; i < 26; i++)	// für jeden Buchstaben im Schluessel...
