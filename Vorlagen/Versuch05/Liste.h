@@ -18,11 +18,16 @@ private:
 
 public:
     Liste();                                                     // Konstruktor mit Zeigerinitialisierung
+    void pushFront(Student pData);
     void pushBack(Student pData);
     void popFront();
     bool empty();
     Student dataFront();
+    Student dataBack();
     void ausgabeVorwaerts() const;
+    void ausgabeRueckwaerts() const;
+    ListenElement* search(int matNr);
+    void remove(ListenElement* pElement);
 };
 
 #endif /*LISTE_H_*/
