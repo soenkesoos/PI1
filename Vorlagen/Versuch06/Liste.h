@@ -27,8 +27,9 @@ public:
     Student dataBack();
     void ausgabeVorwaerts() const;
     void ausgabeRueckwaerts() const;
-    Student* search(int matNr);
     void remove(Student* pElement);
+    Student* findElement(unsigned int matNr);
+    void deleteElement(Student* pElement);
 };
 
 #endif /*LISTE_H_*/

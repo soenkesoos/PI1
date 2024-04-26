@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 
 #include "Liste.h"
 #include "Student.h"
@@ -41,10 +42,12 @@ int main()
                   << "-----------------------------" << std::endl
                   << "(1): Datenelement vorne hinzufuegen" << std::endl
                   << "(2): Datenelement hinten hinzufuegen" << std::endl
-                  << "(3): Datenelement vorne entfernen" << std::endl
-                  << "(4): Datenbank ausgeben" << std::endl
-                  << "(5): Datenbank in umgekehrter Reihenfolge ausgeben" << std::endl
-                  << "(6): Datenelement löschen" << std::endl
+                  << "(3): Datenelement vorne löschen" << std::endl
+                  << "(4): Datenelement hinten löschen" << std::endl
+                  << "(5): Datenbank ausgeben" << std::endl
+                  << "(6): Datenbank in umgekehrter Reihenfolge ausgeben" << std::endl
+                  << "(7): Datenelement löschen" << std::endl
+                  << "(8): Datenelemente aus Datei einlesen" << std::endl
                   << "(0): Beenden" << std::endl;
         std::cin >> abfrage;
         std::cin.ignore(10, '\n');
@@ -122,8 +125,25 @@ int main()
                 }
                 break;
 
-            // Datenbank vorwaerts ausgeben
+            // Datenelement hinten entfernen
             case '4':
+                {
+                    if(!studentenListe.empty())
+                    {
+                        student = studentenListe.dataBack();
+                        std::cout << "Der folgende Student wird geloescht:" << std::endl;
+                        student.ausgabe();
+                        studentenListe.popBack();
+                    }
+                    else
+                    {
+                        std::cout << "Die Liste ist leer!\n";
+                    }
+                }
+                break;
+
+            // Datenbank vorwaerts ausgeben
+            case '5':
                 {
                     if(!studentenListe.empty())
                     {
@@ -138,7 +158,7 @@ int main()
                 break;
 
             // Datenbank rueckwaerts ausgeben
-            case '5':
+            case '6':
                 {
                     if(!studentenListe.empty())
                     {
@@ -153,24 +173,78 @@ int main()
                 break;
 
             // Datenelement loeschen
-            case '6':
+            case '7':
                 {
                     unsigned int matNr = 0;
                     std::cout << "Bitte geben sie die Matrikelnummer des Studenten ein, den sie loeschen moechten: ";
                     std::cin >> matNr;
-                    std::cin.ignore(10, '\n');
 
-                    ListenElement* element = studentenListe.search(matNr);
-                    if(element != nullptr)
+
+                    std::cin.ignore(1, '\n');
+
+                    Student* studentPtr = studentenListe.findElement(matNr);
+                    if(studentPtr != nullptr)
                     {
-                        student = element->getData();
                         std::cout << "Der folgende Student wird geloescht :" << std::endl;
                         student.ausgabe();
-                        studentenListe.remove(element);
+                        studentenListe.deleteElement(studentPtr);
                     }
                     else
                     {
                         std::cout << "Der Student mit der Matrikelnummer " << matNr << " ist nicht in der Liste enthalten.\n";
+                    }
+                }
+                break;
+
+            // Datenelemente aus Datei einlesen
+            case '8':
+                {   
+                    // Variablen für die Daten
+                    unsigned int matNr = 0;
+                    std::string name = "";
+                    std::string geburtstag = "";
+                    std::string adresse = "";
+
+                    // Dateistream
+                    std::string dateiname = "studenten.txt";
+                    std::cout << "Bitte geben sie den Dateinamen ein: ";
+                    //std::cin >> dateiname;        // Dateiname einlesen (auskommentiert zum testen
+                    
+                    std::ifstream dateiStream(dateiname);
+                    if(!dateiStream)
+                    {
+                        std::cout << "Die Datei konnte nicht geoeffnet werden.\n";
+                        exit(1);
+                    }
+
+
+                    dateiStream >> matNr;
+                    while(!dateiStream.eof())
+                    {
+                        // Name einlesen
+                        // Windows (CRLF), MacOs (CR) oder viele ander UNIX Distros (LF) Zeilenumbruch 
+                        // bei selbst erstellten Dateien
+                        // die Demodatei braucht nur LF
+                        dateiStream.ignore(1, 13); // LF ignorieren
+                        dateiStream.ignore(1, 10); // CR ignorieren
+
+                        std::getline(dateiStream, name);
+                        name.erase(std::remove(name.begin(), name.end(), '\r'), name.end());
+
+                        // Geburtstag einlesen
+                        std::getline(dateiStream, geburtstag);
+                        geburtstag.erase(std::remove(geburtstag.begin(), geburtstag.end(), '\r'), geburtstag.end());
+
+                        // Adresse einlesen
+                        std::getline(dateiStream, adresse);
+                        adresse.erase(std::remove(adresse.begin(), adresse.end(), '\r'), adresse.end());
+
+                        // Student erstellen und in Liste einfuegen
+                        student = Student(matNr, name, geburtstag, adresse);
+                        studentenListe.pushBack(student);
+
+                        // Matrikelnummer einlesen
+                        dateiStream >> matNr;
                     }
                 }
                 break;

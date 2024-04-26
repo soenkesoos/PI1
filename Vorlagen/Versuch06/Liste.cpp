@@ -117,7 +117,7 @@ Student Liste::dataBack()
 void Liste::ausgabeVorwaerts() const
 {
     auto it = Liste::studenten.begin();     // auto will choose iterator type automatically
-    for(it; it != studenten.end(); it++)
+    for(; it != studenten.end(); it++)
     {
         it->ausgabe();
     }
@@ -131,7 +131,7 @@ void Liste::ausgabeVorwaerts() const
 void Liste::ausgabeRueckwaerts() const
 {
     auto rit = Liste::studenten.rbegin();   // auto will choose reverse iterator type automatically
-    for(rit; rit != studenten.rend(); rit++)
+    for(; rit != studenten.rend(); rit++)
     {
         rit->ausgabe();
     }
@@ -143,7 +143,7 @@ void Liste::ausgabeRueckwaerts() const
  * @param matNr Matrikelnummer des zu suchenden Listenelements
  * @return Zeiger auf das Listenelement, das die Matrikelnummer enthaelt
  */
-Student* Liste::search(int matNr)
+Student* Liste::findElement(unsigned int matNr)
 {
     for(Student& student : studenten)
     {
@@ -153,4 +153,22 @@ Student* Liste::search(int matNr)
         }
     }
     return nullptr;
+}
+
+/**
+ * @brief löscht listenElement anhand eines Pointer auf das Element
+ * 
+ * @return void
+ */
+void Liste::deleteElement(Student* pStudent)
+{
+    auto it = studenten.begin();
+    for (Student& student : studenten)
+    {
+        if(pStudent == &student)
+        {
+            studenten.erase(it);
+        } 
+        it++;
+    }
 }
