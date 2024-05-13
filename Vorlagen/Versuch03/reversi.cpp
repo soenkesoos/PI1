@@ -332,19 +332,19 @@ void spielen(const int spielerTyp[2])
 {
     int spielfeld[GROESSE_Y][GROESSE_X];
 
-    int runden = 0;
-
     //Erzeuge Startaufstellung
     initialisiereSpielfeld(spielfeld);
 
     int aktuellerSpieler = 1;
+    int runden = 0;
+    int  rundenOffset = 4;      // Offset fuer die Anzahl der Runden
+    int turnsSkipped = 0;       // Anzahl der nacheinander Uebersprungenen Zuege (max 2 moeglich)
     zeigeSpielfeld(spielfeld);
 
-    // solange noch Zuege bei einem der beiden Spieler moeglich sind
-    //
-    // Hier erfolgt jetzt Ihre Implementierung ...
-    while (moeglicheZuege(spielfeld, aktuellerSpieler) > 0)
+
+    while (runden - rundenOffset < GROESSE_X * GROESSE_Y && turnsSkipped < 2)
     {
+        
         runden++;
         if (spielerTyp[aktuellerSpieler - 1] == MENSCH)
         {
@@ -354,20 +354,29 @@ void spielen(const int spielerTyp[2])
         {
             computerZug(spielfeld, aktuellerSpieler);
         }
-        std::cout << "runden : " << runden << std::endl;
+        std::cout << "Runden : " << runden << std::endl;
         zeigeSpielfeld(spielfeld);
+        
         aktuellerSpieler = 3 - aktuellerSpieler;
+        if(moeglicheZuege(spielfeld, aktuellerSpieler) == 0) {
+            turnsSkipped++;
+            rundenOffset++;
+        }
+        else {
+            turnsSkipped = 0;
+        }
     }
+    std::cout << std::endl;
     switch (gewinner(spielfeld))
     {
         case 0:
             std::cout << "Unentschieden!" << std::endl;
             break;
         case 1:
-            std::cout << "Spieler 1 hat gewonnen!" << std::endl;
+            std::cout << "Spieler 1 gewinnt!" << std::endl;
             break;
         case 2:
-            std::cout << "Spieler 2 hat gewonnen!" << std::endl;
+            std::cout << "Spieler 2 gewinnt!" << std::endl;
             break;
         default:
             std::cout << "Unzulaessige Daten im Spielfeld!" << std::endl;
@@ -375,6 +384,7 @@ void spielen(const int spielerTyp[2])
             exit(0);
             break;
     }
+    std::cout << std::endl;
 }
 
 
