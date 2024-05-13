@@ -75,7 +75,7 @@ int main()
     }
 
 
-    std::cout << "Sie können " << getSichtweite(winkel)/1000 << "Km weit sehen." << std::endl;
+    std::cout << std::endl << "Sie können " << getSichtweite(winkel)/1000 << "Km weit sehen." << std::endl;
     std::cout << "Sie sind " << eyeHeight << "Meter hoch." << std::endl;
     std::cout << "Der Winkel beträgt " << winkel << " Grad." << std::endl;
     std::cout << "Anzahl Schritte: " << counter << std::endl;

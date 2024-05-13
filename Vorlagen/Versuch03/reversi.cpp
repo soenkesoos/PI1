@@ -192,11 +192,11 @@ bool zugGueltig(const int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSp
         {
             if (i == 0 && j == 0) continue; // keine Richtung
             int distance = 1;
-            while (aufSpielfeld(posX + i * distance, posY + j * distance) && spielfeld[posY + j * distance][posX + i * distance] == gegner)
+            while (aufSpielfeld(posX + i * distance, posY + j * distance) && (spielfeld[posY + j * distance][posX + i * distance] == gegner))
             {
                 distance++;   
             }
-            if(spielfeld[posY + j * distance][posX + i * distance] == aktuellerSpieler && distance >= 2) return true;
+            if(aufSpielfeld(posX + i * distance, posY + j * distance) && (spielfeld[posY + j * distance][posX + i * distance] == aktuellerSpieler) && (distance >= 2)) return true;
             
         }
     }
@@ -232,7 +232,8 @@ void zugAusfuehren(int spielfeld[GROESSE_Y][GROESSE_X], const int aktuellerSpiel
             {
                 distance++;   
             }
-            if(spielfeld[posY + j * distance][posX + i * distance] == aktuellerSpieler && distance >= 2) {
+            if(aufSpielfeld(posX + i * distance, posY + j * distance) && (spielfeld[posY + j * distance][posX + i * distance] == aktuellerSpieler) 
+            && (distance >= 2)) {
                 for (int k = 0; k < distance; k++)
                 {
                     spielfeld[posY + j * k][posX + i * k] = aktuellerSpieler;
@@ -261,7 +262,7 @@ int moeglicheZuege(const int spielfeld[GROESSE_Y][GROESSE_X], const int aktuelle
     {
         for (int i = 0; i < GROESSE_X; i++)
         {
-            if (zugGueltig(spielfeld, aktuellerSpieler, j, i))
+            if (zugGueltig(spielfeld, aktuellerSpieler, i, j))
             {
                 counter++;
             }
@@ -331,6 +332,8 @@ void spielen(const int spielerTyp[2])
 {
     int spielfeld[GROESSE_Y][GROESSE_X];
 
+    int runden = 0;
+
     //Erzeuge Startaufstellung
     initialisiereSpielfeld(spielfeld);
 
@@ -342,6 +345,7 @@ void spielen(const int spielerTyp[2])
     // Hier erfolgt jetzt Ihre Implementierung ...
     while (moeglicheZuege(spielfeld, aktuellerSpieler) > 0)
     {
+        runden++;
         if (spielerTyp[aktuellerSpieler - 1] == MENSCH)
         {
             menschlicherZug(spielfeld, aktuellerSpieler);
@@ -350,6 +354,7 @@ void spielen(const int spielerTyp[2])
         {
             computerZug(spielfeld, aktuellerSpieler);
         }
+        std::cout << "runden : " << runden << std::endl;
         zeigeSpielfeld(spielfeld);
         aktuellerSpieler = 3 - aktuellerSpieler;
     }
