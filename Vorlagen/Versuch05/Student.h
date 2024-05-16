@@ -17,6 +17,7 @@ public:
     std::string getGeburtstag() const;
     std::string getAdresse() const;
     void ausgabe() const;
+
 private:
     unsigned int matNr;
     std::string name;

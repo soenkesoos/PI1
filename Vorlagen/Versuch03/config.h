@@ -9,7 +9,6 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-
 /** Definiert die Anzahl der Spalten des Spielfelds */
 const int GROESSE_X = 8;
 
@@ -25,6 +24,5 @@ const int AUSFUEHRLICH = 1;
 /**Definiert die Art eines Spielers */
 const int MENSCH = 1;
 const int COMPUTER = 2;
-
 
 #endif /* CONFIG_H_ */

@@ -9,8 +9,8 @@
 
 #include <iostream>
 #include <string>
-using std::cout;
 using std::cin;
+using std::cout;
 int main()
 {
 
@@ -43,14 +43,20 @@ int main()
     std::string sVorname;
     std::string sNachname;
 
-    cout << std::endl << std::endl << "Bitte geben Sie Ihren Vornamen ein: ";
+    cout << std::endl
+         << std::endl
+         << "Bitte geben Sie Ihren Vornamen ein: ";
     cin >> sVorname;
     cout << "Bitte geben Sie Ihren Nachnamen ein: ";
     cin >> sNachname;
 
     std::string sVornameName = sVorname + ", " + sNachname;
 
-    cout << std::endl << std::endl << "Ihr Name ist: " << sVornameName << std::endl << std::endl << std::endl;
+    cout << std::endl
+         << std::endl
+         << "Ihr Name ist: " << sVornameName << std::endl
+         << std::endl
+         << std::endl;
 
     {
         int iFeld[2] = {1, 2};
@@ -61,13 +67,13 @@ int main()
         cout << spielfeld[0][0] << " " << spielfeld[0][1] << " " << spielfeld[0][2] << std::endl;
         cout << spielfeld[1][0] << " " << spielfeld[1][1] << " " << spielfeld[1][2] << std::endl;
 
-        const int iZweite = 2;          // shadowed locale variable iZweite
-        cout << iZweite << std::endl;   // Ausgabe: 2
+        const int iZweite = 2;        // shadowed locale variable iZweite
+        cout << iZweite << std::endl; // Ausgabe: 2
     }
-    cout << iZweite << std::endl;    // Ausgabe: vorher eingegebener Wert
+    cout << iZweite << std::endl; // Ausgabe: vorher eingegebener Wert
 
-    cout << "der ASCII Code von " << sVorname[0] << " ist " << (int)sVorname[0] << " und er steht an der " << (int)sVorname[0]%32 << ". Stelle im Alphabet." << std::endl; // Ausgabe: ASCII-Wert des ersten Zeichens des Vornamens
-    cout << "der ASCII Code von " << sVorname[1] << " ist " << (int)sVorname[1] << " und er steht an der " << (int)sVorname[1]%32 << ". Stelle im Alphabet." << std::endl; // Ausgabe: ASCII-Wert des zweiten Zeichens des Vornamens
+    cout << "der ASCII Code von " << sVorname[0] << " ist " << (int)sVorname[0] << " und er steht an der " << (int)sVorname[0] % 32 << ". Stelle im Alphabet." << std::endl; // Ausgabe: ASCII-Wert des ersten Zeichens des Vornamens
+    cout << "der ASCII Code von " << sVorname[1] << " ist " << (int)sVorname[1] << " und er steht an der " << (int)sVorname[1] % 32 << ". Stelle im Alphabet." << std::endl; // Ausgabe: ASCII-Wert des zweiten Zeichens des Vornamens
 
     return 0;
 }

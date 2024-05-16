@@ -7,21 +7,21 @@
 /**
  * @brief Standardkonstruktor, der eine leere Liste erstellt
  */
-Liste::Liste(): front(nullptr), back(nullptr)
+Liste::Liste() : front(nullptr), back(nullptr)
 {
 }
 
 /**
  * @brief Hinzufuegen eines neuen Listenelements am Anfang der Liste.
-* 
-* @param pData Zeiger auf ein Objekt der Klasse Student
-* @return void
+ *
+ * @param pData Zeiger auf ein Objekt der Klasse Student
+ * @return void
  */
 void Liste::pushFront(Student pData)
 {
-    ListenElement* neuesElement = new ListenElement(pData, nullptr, nullptr);
+    ListenElement *neuesElement = new ListenElement(pData, nullptr, nullptr);
 
-    if (front == nullptr && back == nullptr)                                       // Liste leer?
+    if (front == nullptr && back == nullptr) // Liste leer?
     {
         front = neuesElement;
         back = neuesElement;
@@ -29,10 +29,9 @@ void Liste::pushFront(Student pData)
     else
     {
         neuesElement->setNext(front);
-        front->setPrev(neuesElement);                        // front zeigt auf das vorherige Element
+        front->setPrev(neuesElement); // front zeigt auf das vorherige Element
         front = neuesElement;
     }
-
 }
 
 /**
@@ -43,9 +42,9 @@ void Liste::pushFront(Student pData)
  */
 void Liste::pushBack(Student pData)
 {
-    ListenElement* neuesElement = new ListenElement(pData, nullptr, nullptr);
+    ListenElement *neuesElement = new ListenElement(pData, nullptr, nullptr);
 
-    if (front == nullptr)                                       // Liste leer?
+    if (front == nullptr) // Liste leer?
     {
         front = neuesElement;
         back = neuesElement;
@@ -53,7 +52,7 @@ void Liste::pushBack(Student pData)
     else
     {
         back->setNext(neuesElement);
-        neuesElement->setPrev(back);                        // neuesElement zeigt auf das vorherige Element
+        neuesElement->setPrev(back); // neuesElement zeigt auf das vorherige Element
         back = neuesElement;
     }
 }
@@ -65,18 +64,18 @@ void Liste::pushBack(Student pData)
  */
 void Liste::popFront()
 {
-    ListenElement* cursor = front;
+    ListenElement *cursor = front;
 
-    if (front == back)                                       // Liste enthält nur ein Listenelement
+    if (front == back) // Liste enthält nur ein Listenelement
     {
-        delete front;                                        // Listenelement löschen
+        delete front; // Listenelement löschen
         front = nullptr;
         back = nullptr;
     }
     else
     {
         front = front->getNext();
-        front->setPrev(nullptr);                             // Zeiger auf das vorherige Element löschen
+        front->setPrev(nullptr); // Zeiger auf das vorherige Element löschen
         delete cursor;
     }
 }
@@ -88,7 +87,7 @@ void Liste::popFront()
  */
 bool Liste::empty()
 {
-    if(front == nullptr && back == nullptr)                // back == nullptr ist redundant, aber zur Sicherheit
+    if (front == nullptr && back == nullptr) // back == nullptr ist redundant, aber zur Sicherheit
     {
         return true;
     }
@@ -115,7 +114,6 @@ Student Liste::dataBack()
     return back->getData();
 }
 
-
 /**
  * @brief Ausgabe der Liste vom ersten bis zum letzten Element.
  *
@@ -123,11 +121,11 @@ Student Liste::dataBack()
  */
 void Liste::ausgabeVorwaerts() const
 {
-    ListenElement* cursor = front;
+    ListenElement *cursor = front;
 
     while (cursor != nullptr)
     {
-    	cursor->getData().ausgabe();
+        cursor->getData().ausgabe();
         cursor = cursor->getNext();
     }
 }
@@ -139,7 +137,7 @@ void Liste::ausgabeVorwaerts() const
  */
 void Liste::ausgabeRueckwaerts() const
 {
-    ListenElement* cursor = back;
+    ListenElement *cursor = back;
 
     while (cursor != nullptr)
     {
@@ -150,21 +148,21 @@ void Liste::ausgabeRueckwaerts() const
 
 /**
  * @brief Suchen eines Listenelements anhand der Matrikelnummer
- * 
+ *
  * @param matNr Matrikelnummer des zu suchenden Listenelements
  * @return Zeiger auf das Listenelement, das die Matrikelnummer enthaelt
  */
-ListenElement* Liste::search(int matNr)
+ListenElement *Liste::search(int matNr)
 {
-    if(empty())
+    if (empty())
     {
         return nullptr;
     }
-    ListenElement* cursor = front;
-    while(cursor->getData().getMatNr() != matNr)
+    ListenElement *cursor = front;
+    while (cursor->getData().getMatNr() != matNr)
     {
         cursor = cursor->getNext();
-        if(cursor == nullptr)
+        if (cursor == nullptr)
         {
             return nullptr;
         }
@@ -174,13 +172,13 @@ ListenElement* Liste::search(int matNr)
 
 /**
  * @brief Entfernen eines Listenelements aus der Liste
- * 
- * @param pElement Zeiger auf das zu entfernende Listenelement 
+ *
+ * @param pElement Zeiger auf das zu entfernende Listenelement
  * @return void
  */
-void Liste::remove(ListenElement* pElement)
+void Liste::remove(ListenElement *pElement)
 {
     pElement->getPrev()->setNext(pElement->getNext());
     pElement->getNext()->setPrev(pElement->getPrev());
-    delete pElement;                                    // Sind so auch die Daten gelöscht? Ich glaube nein.
+    delete pElement; // Sind so auch die Daten gelöscht? Ich glaube nein.
 }

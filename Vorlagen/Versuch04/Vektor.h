@@ -1,6 +1,6 @@
 //
-// Praktikum Informatik 1 
-// 
+// Praktikum Informatik 1
+//
 // Versuch 04: Einf�hrung Klasse
 //
 // Datei:  Vektor.h
@@ -20,22 +20,21 @@
 
 class Vektor
 {
-   public:
+public:
     Vektor(double x, double y, double z);
     ~Vektor();
 
     void ausgabe() const;
-    Vektor sub(const Vektor& input) const;
+    Vektor sub(const Vektor &input) const;
     double laenge() const;
-    double skalarProd(const Vektor& input) const;
-    double winkel(const Vektor& input) const;
+    double skalarProd(const Vektor &input) const;
+    double winkel(const Vektor &input) const;
     void rotiereUmZ(const double rad);
-    
-   private:
+
+private:
     double x;
     double y;
     double z;
-
 };
 
 #endif

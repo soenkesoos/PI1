@@ -16,7 +16,7 @@ bool erdeSichtbar(const double winkel)
     const double rad = winkel * M_PI / 180;
     Vektor radiusVektor(earthRadius, 0, 0);
     radiusVektor.rotiereUmZ(rad);
-    if(radiusVektor.winkel(radiusVektor.sub(Vektor(earthRadius + eyeHeight, 0, 0))) > M_PI / 2)
+    if (radiusVektor.winkel(radiusVektor.sub(Vektor(earthRadius + eyeHeight, 0, 0))) > M_PI / 2)
     {
         return true;
     }
@@ -35,7 +35,6 @@ double getSichtweite(const double winkel)
     return radiusVektor.laenge();
 }
 
-
 int main()
 {
 
@@ -46,23 +45,23 @@ int main()
 
     std::cout << std::fixed << std::setprecision(10);
 
-
-    
     double increment = 1.0;
     bool lastVisible = true;
     int counter = 0;
     int counter2 = 0;
-    while (abs(increment) > 0.0000000001) {
+    while (abs(increment) > 0.0000000001)
+    {
         counter++;
         counter2++;
-        if (erdeSichtbar(winkel) && !lastVisible) 
+        if (erdeSichtbar(winkel) && !lastVisible)
         {
             std::cout << "Zu weit rückwärts gedreht. Ändere Schrittweite von " << increment << " zu ";
             increment /= -10;
             std::cout << increment << std::endl;
             std::cout << "Winkel: " << winkel << "\tSchritte in diesem Durchlauf: " << counter2 << std::endl;
             counter2 = 0;
-        } else if (!erdeSichtbar(winkel) && lastVisible) 
+        }
+        else if (!erdeSichtbar(winkel) && lastVisible)
         {
             std::cout << "Zu weit vorwärts gedreht. Ändere Schrittweite von " << increment << " zu ";
             increment /= -10;
@@ -74,13 +73,11 @@ int main()
         winkel += increment;
     }
 
-
-    std::cout << std::endl << "Sie können " << getSichtweite(winkel)/1000 << "Km weit sehen." << std::endl;
+    std::cout << std::endl
+              << "Sie können " << getSichtweite(winkel) / 1000 << "Km weit sehen." << std::endl;
     std::cout << "Sie sind " << eyeHeight << "Meter hoch." << std::endl;
     std::cout << "Der Winkel beträgt " << winkel << " Grad." << std::endl;
     std::cout << "Anzahl Schritte: " << counter << std::endl;
 
-
     return 0;
-
 }
