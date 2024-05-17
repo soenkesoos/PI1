@@ -61,7 +61,7 @@ void Medium::zurueckgeben()
     if (status)
     {
         status = false;
-        std::cout << "Das Medium \"" << titel << "\" wurde zurückgegeben." << std::endl;
+        std::cout << "Das Medium \"" << titel << "\" wurde zurï¿½ckgegeben." << std::endl;
     }
     else
     {
