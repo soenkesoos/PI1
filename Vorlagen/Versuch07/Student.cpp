@@ -73,7 +73,7 @@ void Student::ausgabe(std::ostream& out) const
               << std::endl;
 }
 
-std::ostream& operator<<(std::ostream& out, Student& student)
+std::ostream& operator<<(std::ostream& out, const Student& student)
 {
     student.ausgabe(out);
     return out;
