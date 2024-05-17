@@ -28,4 +28,6 @@ private:
     std::string adresse;
 };
 
+std::ostream& operator<<(std::ostream& out, const Student& student);
+
 #endif
