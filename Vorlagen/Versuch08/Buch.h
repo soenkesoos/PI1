@@ -5,6 +5,11 @@ class Buch : public Medium
 {
 public:
     Buch(std::string initTitel, std::string initAutor);
+
+    /**
+     * @brief Ausgabefunktion
+     * Überladene Funktion aus Medium
+    */
     void ausgabe() const;
 
 private:
