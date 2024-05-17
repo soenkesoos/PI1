@@ -11,9 +11,9 @@
 #include "Datum.h"
 #include "Person.h"
 
-/*! \brief Basisklasse f�r s�mtliche Medien
+/*! \brief Basisklasse für sämtliche Medien
 *
-* Diese Klasse stellt eine Basisklasse f�r Objekte dar, die Medien beschreiben
+* Diese Klasse stellt eine Basisklasse für Objekte dar, die Medien beschreiben
 * Von dieser Klasse werden alle anderen Medien, wie z.B. Buch oder DVD abgeleitet
 */
 class Medium
@@ -43,23 +43,23 @@ public:
     /*!
      * @brief Ausleihen-Funktion
      *
-     * \param Person person: Person die das Medium ausleihen m�chte
+     * \param Person person: Person die das Medium ausleihen möchte
      * \param Datum ausleihdatum: Datum an dem das Medium ausgeliehen wird
      *
-     * \return bool: true,  wenn die Ausleihbeschr�nkungen erf�llt sind und das Medium ausgeliehen werden kann
-     *               false, wenn die Ausleihbeschr�nkungen nicht erf�llt sind und das Medium nicht ausgeliehen werden kann
+     * \return bool: true,  wenn die Ausleihbeschränkungen erfüllt sind und das Medium ausgeliehen werden kann
+     *               false, wenn die Ausleihbeschränkungen nicht erfüllt sind und das Medium nicht ausgeliehen werden kann
      */
     virtual bool ausleihen(Person person, Datum ausleihdatum);
 
     /*!
-     * @brief Gibt ein Medium in die B�cherei zur�ck
+     * @brief Gibt ein Medium in die Bücherei zurück
      */
     void zurueckgeben();
 
     /*!
      * @brief ID des Mediums
      *
-     * \return int: gibt die ID des Mediums zur�ck
+     * \return int: gibt die ID des Mediums zurück
      */
     unsigned int getID();
 
