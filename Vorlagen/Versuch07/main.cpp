@@ -48,6 +48,7 @@ int main()
                   << "(6): Datenbank in umgekehrter Reihenfolge ausgeben" << std::endl
                   << "(7): Datenelement löschen" << std::endl
                   << "(8): Datenelemente aus Datei einlesen" << std::endl
+                  << "(9): Datenbank sortieren" << std::endl
                   << "(0): Beenden" << std::endl;
         std::cin >> abfrage;
         std::cin.ignore(10, '\n');
@@ -115,7 +116,7 @@ int main()
             {
                 student = studentenListe.dataFront();
                 std::cout << "Der folgende Student ist geloescht worden:" << std::endl;
-//                std::cout << &student;
+                std::cout << student;
                 studentenListe.popFront();
             }
             else
@@ -132,7 +133,7 @@ int main()
             {
                 student = studentenListe.dataBack();
                 std::cout << "Der folgende Student wird geloescht:" << std::endl;
-//                student.ausgabe();
+                std::cout << student;
                 studentenListe.popBack();
             }
             else
@@ -185,8 +186,8 @@ int main()
             if (studentPtr != nullptr)
             {
                 std::cout << "Der folgende Student wird geloescht :" << std::endl;
-//                student.ausgabe();
-                studentenListe.deleteElement(studentPtr);
+                std::cout << *studentPtr;
+                studentenListe.remove(studentPtr);
             }
             else
             {
@@ -246,6 +247,12 @@ int main()
             }
         }
         break;
+
+        // Datenbank sortieren
+        case '9':
+            std::cout << "Die Liste wird sortiert.\n";
+            studentenListe.sort();
+            break;
 
         case '0':
             std::cout << "Das Programm wird nun beendet";

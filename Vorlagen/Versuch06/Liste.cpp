@@ -160,7 +160,7 @@ Student* Liste::findElement(unsigned int matNr)
  * 
  * @return void
  */
-void Liste::deleteElement(Student* pStudent)
+void Liste::delete(Student* pStudent)
 {
     auto it = studenten.begin();
     for (Student& student : studenten)

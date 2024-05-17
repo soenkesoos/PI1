@@ -186,7 +186,7 @@ int main()
             {
                 std::cout << "Der folgende Student wird geloescht :" << std::endl;
                 student.ausgabe();
-                studentenListe.deleteElement(studentPtr);
+                studentenListe.delete(studentPtr);
             }
             else
             {

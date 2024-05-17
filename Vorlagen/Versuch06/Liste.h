@@ -29,7 +29,7 @@ public:
     void ausgabeRueckwaerts() const;
     void remove(Student* pElement);
     Student* findElement(unsigned int matNr);
-    void deleteElement(Student* pElement);
+    void delete(Student* pElement);
 };
 
 #endif /*LISTE_H_*/

@@ -73,6 +73,9 @@ void Student::ausgabe(std::ostream& out) const
               << std::endl;
 }
 
+/**
+ * @brief Überladener Operator, der die Daten des Studenten in einer Zeile ausgibt
+ */
 std::ostream& operator<<(std::ostream& out, const Student& student)
 {
     student.ausgabe(out);

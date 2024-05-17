@@ -5,6 +5,7 @@
 #include "Liste.h"
 #include "Student.h"
 #include <vector>
+#include <algorithm>
 
 /**
  * @brief Standardkonstruktor, der eine leere Liste (eigentlich einen Vector) erstellt
@@ -56,7 +57,7 @@ void Liste::popBack()
 }
 
 /**
- * @brief entfernen eines Listenelements an beliebiger Stelle
+ * @brief entfernen eines Listenelements anhand des Index
  *
  * @return void
  */
@@ -64,6 +65,24 @@ void Liste::remove(int index)
 {
     auto it = studenten.begin() + index;
     studenten.erase(it);
+}
+
+/**
+ * @brief löscht listenElement anhand eines Pointer auf das Element
+ *
+ * @return void
+ */
+void Liste::remove(Student *pStudent)
+{
+    auto it = studenten.begin();
+    for (Student &student : studenten)
+    {
+        if (pStudent == &student)
+        {
+            studenten.erase(it);
+        }
+        it++;
+    }
 }
 
 /**
@@ -126,7 +145,7 @@ Student Liste::dataBack()
  */
 void Liste::ausgabeVorwaerts() const
 {
-    for(auto it = studenten.begin(); it != studenten.end(); it++)
+    for (auto it = studenten.begin(); it != studenten.end(); it++)
     {
         std::cout << *it;
     }
@@ -139,10 +158,9 @@ void Liste::ausgabeVorwaerts() const
  */
 void Liste::ausgabeRueckwaerts() const
 {
-    auto rit = Liste::studenten.rbegin(); // auto will choose reverse iterator type automatically
-    for (; rit != studenten.rend(); rit++)
+    for (auto rit = Liste::studenten.rbegin(); rit != studenten.rend(); rit++)
     {
-        //std::cout << *rit;
+        std::cout << *rit;
     }
 }
 
@@ -154,30 +172,17 @@ void Liste::ausgabeRueckwaerts() const
  */
 Student *Liste::findElement(unsigned int matNr)
 {
-    for (Student &student : studenten)
+    // Ich bezweifle stark, dass wird das so machen sollen, aber es funktioniert
+    auto it = std::find_if(studenten.begin(), studenten.end(), [&matNr](const Student &student)
+        { return student.getMatNr() == matNr; });
+    if (it != studenten.end())
     {
-        if (student.getMatNr() == matNr)
-        {
-            return &student;
-        }
+        // Element gefunden
+        return &(*it);
     }
-    return nullptr;
-}
-
-/**
- * @brief löscht listenElement anhand eines Pointer auf das Element
- *
- * @return void
- */
-void Liste::deleteElement(Student *pStudent)
-{
-    auto it = studenten.begin();
-    for (Student &student : studenten)
+    else
     {
-        if (pStudent == &student)
-        {
-            studenten.erase(it);
-        }
-        it++;
+        // Element nicht gefunden
+        return nullptr;
     }
 }

@@ -21,6 +21,7 @@ public:
     void popFront();
     void popBack();
     void remove(int index);
+    void remove(Student* pElement);                             // Überladen der remove Funktion
     void insert(int index, Student student);
     void sort();
     bool empty();
@@ -28,9 +29,7 @@ public:
     Student dataBack();
     void ausgabeVorwaerts() const;
     void ausgabeRueckwaerts() const;
-    void remove(Student* pElement);
     Student* findElement(unsigned int matNr);
-    void deleteElement(Student* pElement);
 };
 
 #endif /*LISTE_H_*/
