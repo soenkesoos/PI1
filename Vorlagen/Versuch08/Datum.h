@@ -10,28 +10,25 @@
 #include <string>
 #include <iostream>
 
-
-/*! \brief Klasse für ein Datum
+/*! \brief Klasse fÃ¼r ein Datum
  *
  * Speichert ein Datum, bestehend aus Tag, Monat und Jahr.
- * Die Klasse Datum bietet verschiedene Funktionalitäten/Operatoren
- * die zum Ausgeben/Bearbeiten/Vergleichen von verschiedenen Daten genutzt werden können
- *
+ * Die Klasse Datum bietet verschiedene FunktionalitÃ¤ten/Operatoren,
+ * die zum Ausgeben/Bearbeiten/Vergleichen von verschiedenen Daten genutzt werden kÃ¶nnen.
  */
 
 class Datum
 {
 public:
     /*!
-     * @brief Standartkonstruktor
+     * @brief Standardkonstruktor
      *
-     * Initialisiert die Klasse Datum mit dem heutigen Datum
-     *
+     * Initialisiert die Klasse Datum mit dem heutigen Datum.
      */
     Datum();
 
     /*!
-     * @brief Konstruktor für ein gegebenes Datum
+     * @brief Konstruktor fÃ¼r ein gegebenes Datum
      *
      * \param int initTag:    gegebener Tag
      * \param int initMonat:  gegebener Monat
@@ -46,41 +43,41 @@ public:
     ~Datum(void);
 
     /*!
-     * @brief Eingabe eines Datums über einen Eingabestream
+     * @brief Eingabe eines Datums Ã¼ber einen Eingabestream
      *
      * \param std::istream& in: Eingabestream zum Einlesen
      */
-    void eingabe(std::istream& in);
+    void eingabe(std::istream &in);
 
     /*!
-     * @brief Ausgabe eines Datums über einen Ausgabestream
+     * @brief Ausgabe eines Datums Ã¼ber einen Ausgabestream
      *
      * \param std::ostream out: Ausgabestream zum Ausgeben
      */
-    void ausgabe(std::ostream& out) const;
+    void ausgabe(std::ostream &out) const;
 
     /*!
      * @brief Zuweisungsoperator
      *
-     * \param Datum& d: Argument auf der rechten Seite, welches der Ausgangspunkt für die Zuweisung ist
+     * \param Datum& d: Argument auf der rechten Seite, welches der Ausgangspunkt fÃ¼r die Zuweisung ist
      */
-    Datum& operator=(Datum& d);
+    Datum &operator=(Datum &d);
 
     /*!
      * @brief Subtraktionsoperator
      *
      * \param Datum& d: Argument auf der rechten Seite
      *
-     * \return int: Gibt die Differenz der beiden Monate in Monaten zurück
+     * \return int: Gibt die Differenz der beiden Monate in Monaten zurÃ¼ck
      */
     int operator-(const Datum d) const;
 
     /*!
      * @brief Additionsoperator
      *
-     * \param const int: anzahlTag Anzahl der Tage, die auf das aktuelle Datum addiert werden sollen
+     * \param const int: anzahlTage Anzahl der Tage, die auf das aktuelle Datum addiert werden sollen
      *
-     * \return Datum: Gibt das modifizierte Datum zurück
+     * \return Datum: Gibt das modifizierte Datum zurÃ¼ck
      */
     Datum operator+(const int anzahlTage) const;
 
@@ -90,29 +87,29 @@ private:
     int jahr;
 
     /*!
-     * @brief Enthält die Anzahl der Tage pro Monat
+     * @brief EnthÃ¤lt die Anzahl der Tage pro Monat
      */
     static const int tageMonat[12];
 };
 
 /*!
- * @brief Überladung des Ausgabestream-Operators für die Klasse Datum
+ * @brief Ãœberladung des Ausgabestream-Operators fÃ¼r die Klasse Datum
  *
  * \param std::ostream& out: Argument auf der linken Seite des Operators
  * \param const Datum& d: Argument auf der rechten Seite des Operators
  *
- * \return std::ostream&: Rückgabe des Streams auf den das Datum geschrieben wurde
+ * \return std::ostream&: RÃ¼ckgabe des Streams, auf den das Datum geschrieben wurde
  */
-std::ostream& operator<<(std::ostream& out, const Datum& d);
+std::ostream &operator<<(std::ostream &out, const Datum &d);
 
 /*!
- * @brief Überladung des Eingabestream-Operators für die Klasse Datum
+ * @brief Ãœberladung des Eingabestream-Operators fÃ¼r die Klasse Datum
  *
- * \param std::istream& out: Argument auf der linken Seite des Operators
+ * \param std::istream& in: Argument auf der linken Seite des Operators
  * \param const Datum& d: Argument auf der rechten Seite des Operators
  *
- * \return std::istream&: Rückgabe des Streams in den das Datum geschrieben wurde
+ * \return std::istream&: RÃ¼ckgabe des Streams, in den das Datum geschrieben wurde
  */
-std::istream& operator >> (std::istream& in, Datum& d);
+std::istream &operator>>(std::istream &in, Datum &d);
 
 #endif

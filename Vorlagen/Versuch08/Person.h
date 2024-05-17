@@ -15,7 +15,7 @@
  * @brief Klasse Person
  *
  * Die Klasse Person speichert alle relevanten Informationenen einer Person ab,
- * die für die Bücherei relevant sind, dies beinhaltet:
+ * die fÃ¼r die BÃ¼cherei relevant sind, dies beinhaltet:
  *  - Name
  *  - Geburtsdatum
  *
@@ -41,14 +41,14 @@ public:
     /*!
      * @brief Zugriffsfunktion auf den Namen der Person
      *
-     * \return std::string: gibt den Namen der Person zurück
+     * \return std::string: gibt den Namen der Person zurÃ¼ck
      */
     std::string getName() const;
 
     /*!
      * @brief Zugriffsfunktion auf das Geburtsdatum der Person
      *
-     * \return Datum: gibt das Geburtsdautm der Person zurück
+     * \return Datum: gibt das Geburtsdautm der Person zurÃ¼ck
      */
     Datum getGeburtsdatum() const;
 
