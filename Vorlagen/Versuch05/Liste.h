@@ -21,12 +21,13 @@ public:
     void pushFront(Student pData);
     void pushBack(Student pData);
     void popFront();
+    void popBack();
     bool empty();
     Student dataFront();
     Student dataBack();
     void ausgabeVorwaerts() const;
     void ausgabeRueckwaerts() const;
-    ListenElement *search(int matNr);
+    ListenElement *search(unsigned int matNr);
     void remove(ListenElement *pElement);
 };
 

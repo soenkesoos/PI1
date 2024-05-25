@@ -80,6 +80,30 @@ void Liste::popFront()
     }
 }
 
+
+/**
+ * @brief Entfernen eines Listenelements am Ende der Liste.
+ *
+ * @return void
+ */
+void Liste::popBack()
+{
+    ListenElement *cursor = back;
+
+    if (back == front) // Liste enthält nur ein Listenelement
+    {
+        delete back; // Listenelement löschen
+        back = nullptr;
+        front = nullptr;
+    }
+    else
+    {
+        back = back->getPrev();
+        back->setNext(nullptr); // Zeiger auf das vorherige Element löschen
+        delete cursor;
+    }
+}
+
 /**
  * @brief Pruefen, ob die Liste leer ist
  *
@@ -152,7 +176,7 @@ void Liste::ausgabeRueckwaerts() const
  * @param matNr Matrikelnummer des zu suchenden Listenelements
  * @return Zeiger auf das Listenelement, das die Matrikelnummer enthaelt
  */
-ListenElement *Liste::search(int matNr)
+ListenElement *Liste::search(unsigned int matNr)
 {
     if (empty())
     {
@@ -178,7 +202,15 @@ ListenElement *Liste::search(int matNr)
  */
 void Liste::remove(ListenElement *pElement)
 {
-    pElement->getPrev()->setNext(pElement->getNext());
-    pElement->getNext()->setPrev(pElement->getPrev());
-    delete pElement; // Sind so auch die Daten gelöscht? Ich glaube nein.
+
+    if (pElement == front) {
+				this->popFront();
+			} else if (pElement == back) {
+				this->popBack();
+			} else {
+
+        pElement->getPrev()->setNext(pElement->getNext());
+        pElement->getNext()->setPrev(pElement->getPrev());
+    }
+
 }
