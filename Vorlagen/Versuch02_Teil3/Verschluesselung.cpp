@@ -12,10 +12,17 @@ using namespace std;
 #include <iostream>
 #include <string>
 
+/**
+ * @brief Verschlüsselt ein gegebenes Wort basierend auf einem Schlüssel.
+ * 
+ * @param schluessel Ein 2D-Array, das die Verschlüsselungsregel definiert.
+ * @param wort Das zu verschlüsselnde Wort.
+ * @return Das verschlüsselte Wort.
+ */
 string verschluesseln(const char schluessel[2][26], string wort)
 {
 	transform(wort.begin(), wort.end(), wort.begin(), ::toupper); // !!!!!!wenn diese Zeile Errors wirft einfach entfernen, ist nur zur sicherheit hier
-	for (char &c : wort)										  // für jeden char im string
+	for (char &c : wort)                                          // für jeden char im string
 	{
 		for (int i = 0; i < 26; i++) // für jeden Buchstaben im Schluessel...
 		{
@@ -30,10 +37,17 @@ string verschluesseln(const char schluessel[2][26], string wort)
 	return wort;
 }
 
+/**
+ * @brief Entschlüsselt ein gegebenes Wort basierend auf einem Schlüssel.
+ * 
+ * @param schluessel Ein 2D-Array, das die Entschlüsselungsregel definiert.
+ * @param wort Das zu entschlüsselnde Wort.
+ * @return Das entschlüsselte Wort.
+ */
 string entschluesseln(const char schluessel[2][26], string wort)
 {
 	transform(wort.begin(), wort.end(), wort.begin(), ::toupper); // !!!!!!wenn diese Zeile Errors wirft einfach entfernen, ist nur zur sicherheit hier
-	for (char &c : wort)										  // für jeden char im string
+	for (char &c : wort)                                          // für jeden char im string
 	{
 		for (int i = 0; i < 26; i++) // für jeden Buchstaben im Schluessel...
 		{
@@ -48,6 +62,14 @@ string entschluesseln(const char schluessel[2][26], string wort)
 	return wort;
 }
 
+/**
+ * @brief Hauptprogramm zur Demonstration der Verschlüsselung und Entschlüsselung.
+ * 
+ * Liest ein Wort von der Eingabe, verschlüsselt es und entschlüsselt es wieder.
+ * Gibt das Originalwort, das verschlüsselte und das wieder entschlüsselte Wort aus.
+ * 
+ * @return 0 wenn das Programm erfolgreich beendet wird.
+ */
 int main()
 {
 	// Hier folgt Ihr Code
