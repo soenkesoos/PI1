@@ -14,6 +14,8 @@ using std::cout;
 int main()
 {
 
+    cout << "Bitte geben Sie zwei Zahlen (nacheinander) ein: " << std::endl;    // Ausgabe: Bitte geben Sie zwei Zahlen (nacheinander) ein:
+
     int iErste = 0;
     int iZweite = 0;
 
