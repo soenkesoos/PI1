@@ -23,6 +23,15 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Streetplanner
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
+        city.h city.cpp
+        map.h map.cpp
+        abstractmap.h abstractmap.cpp
+        street.h street.cpp
+        addcitydialog.h addcitydialog.cpp addcitydialog.ui
+        mapio.h mapio.cpp
+        mapionrw.h mapionrw.cpp
+        dijkstra.h dijkstra.cpp
+        searchdialog.h searchdialog.cpp searchdialog.ui
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET Streetplanner APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -56,6 +65,7 @@ set_target_properties(Streetplanner PROPERTIES
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
+
 )
 
 include(GNUInstallDirs)
