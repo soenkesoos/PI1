@@ -1,0 +1,160 @@
+74567
+Vera Schmitt
+23.07.1982
+Gartenstr. 23
+12345
+Siggi Baumeister
+23.04.1983
+Ahornst.55
+64567
+Paula Peters
+9.01.1981
+Weidenweg 12
+23456
+Walter Rodenstock
+15.10.1963
+Wöllnerstr.9
+54678
+Ines Müller
+12.11.1985
+Lindenstr. 8
+34567
+Jörg Schneider
+6.06.1978
+Birkenweg 34
+45678
+Mona Schulz
+3.03.1990
+Erlenstr. 22
+56789
+Hans Fischer
+18.12.1967
+Buchenweg 10
+65789
+Klara Becker
+29.02.1984
+Tannenweg 15
+23457
+Tim Lehmann
+25.08.1975
+Eschenweg 7
+12346
+Nina Wagner
+1.01.1980
+Rosenstr. 6
+67890
+Uwe Kaiser
+10.07.1964
+Tulpenweg 9
+12347
+Lars Weber
+21.09.1983
+Kiefernweg 23
+34568
+Petra Neumann
+30.05.1977
+Akazienweg 12
+45679
+Gerd Braun
+8.08.1982
+Kastanienweg 4
+56780
+Anja Richter
+2.04.1969
+Ahornstr. 18
+23458
+Frank Klein
+19.11.1986
+Birkenweg 16
+12348
+Silke Lange
+14.07.1981
+Ulmenweg 5
+67891
+Oliver König
+17.02.1974
+Pappelweg 3
+78901
+Katja Wolf
+23.12.1965
+Lärchenweg 2
+34569
+Jana Schröder
+5.05.1987
+Fichtenweg 11
+45680
+Dirk Werner
+16.06.1980
+Eichenweg 14
+56781
+Claudia Hofmann
+11.03.1979
+Zedernweg 6
+67892
+Ralf Krüger
+4.10.1962
+Apfelweg 1
+45681
+Bettina Weber
+13.08.1988
+Kirschweg 17
+56782
+Kai Zimmermann
+22.09.1985
+Pflaumenweg 20
+67893
+Tanja Meyer
+7.02.1983
+Traubenweg 8
+78902
+Ulf Hartmann
+12.07.1968
+Haselnussweg 19
+56783
+Simone Maier
+31.03.1989
+Mandelweg 9
+67894
+Thorsten Huber
+27.06.1981
+Birnbaumweg 21
+78903
+Laura Schmitt
+28.01.1976
+Kürbisweg 13
+89012
+Michael Schröder
+6.04.1961
+Erdbeerweg 15
+67895
+Marion Keller
+9.09.1987
+Rosenweg 7
+78904
+Holger Scholz
+18.05.1973
+Veilchenweg 2
+89013
+Anke Lang
+22.10.1982
+Fliederweg 18
+90123
+Udo Krämer
+15.11.1964
+Maiglöckchenweg 4
+78905
+Eva Lehmann
+14.08.1986
+Nelkenweg 12
+89014
+Erik Fuchs
+26.12.1972
+Gladiolenweg 23
+90124
+Sven Petersen
+2.02.1981
+Lilienstieg 3
+01234
+Birgit Walter
+3.03.1967
+Orchideenweg 10
