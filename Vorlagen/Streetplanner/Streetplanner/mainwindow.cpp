@@ -6,6 +6,8 @@
 #include <QRandomGenerator>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QFileDialog>
+#include <QStandardPaths>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -288,6 +290,8 @@ void MainWindow::on_pushButton_Wayfinder_clicked()
     if(searchDialog->exec() == QDialog::Accepted) {
         if(searchDialog->inputEmpty())
             return;
+        scene.clear();
+        map.draw(scene);
         QVector<Street*> path = Dijkstra::search(map, searchDialog->getCityFrom(), searchDialog->getCityTo());
         for(auto street : path )
         {
@@ -295,5 +299,50 @@ void MainWindow::on_pushButton_Wayfinder_clicked()
             street->drawRed(scene);
         }
     }
+}
+
+
+void MainWindow::on_pushButton_AddStreet_clicked()
+{
+    qDebug() << "on_pushButton_AddStreet_clicked";
+    int returnValue;
+    AddStreetDialog *addStreetDialog = new AddStreetDialog(&map);
+    do {
+        returnValue = addStreetDialog->exec();
+    } while(returnValue == 2);              // 2 -> Input invalid
+    if(returnValue == QDialog::Rejected)    // close Button was clicked
+        return;
+
+
+    qDebug() << "Input registered";
+    this->map.addStreet(addStreetDialog->createStreet());
+    qDebug() << "Street was successfully added";
+    this->map.draw(this->scene);
+}
+
+
+void MainWindow::on_actionOpen_triggered()
+{
+    QString citiesFileName = QFileDialog::getOpenFileName(
+        this,
+        tr("Open Cities file"),
+        QStandardPaths::writableLocation(QStandardPaths::HomeLocation),
+        tr("Text Files (*.txt)")
+        );
+    if (citiesFileName.isEmpty()) return;
+
+    QString streetsFileName = QFileDialog::getOpenFileName(
+        this,
+        tr("Open Streets file"),
+        "",
+        tr("Text Files (*.txt)")
+        );
+    if (streetsFileName.isEmpty()) return;
+
+
+    MapIoFileinput *fileInput = new MapIoFileinput(citiesFileName, streetsFileName);
+    this->mapIo = fileInput;
+    this->mapIo->fillMap(map);
+    this->map.draw(scene);
 }
 

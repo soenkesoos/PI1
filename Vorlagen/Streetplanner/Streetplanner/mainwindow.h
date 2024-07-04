@@ -12,6 +12,8 @@
 #include "mapionrw.h"
 #include "dijkstra.h"
 #include "searchdialog.h"
+#include "addstreetdialog.h"
+#include "mapiofileinput.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -56,6 +58,10 @@ private slots:
     void on_pushButton_TestDijkstra_clicked();
 
     void on_pushButton_Wayfinder_clicked();
+
+    void on_pushButton_AddStreet_clicked();
+
+    void on_actionOpen_triggered();
 
 private:
     QGraphicsScene scene;

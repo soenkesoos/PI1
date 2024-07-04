@@ -38,7 +38,7 @@ void Map::draw(QGraphicsScene &scene) {
 
 City* Map::findCity(const QString cityName) const
 {
-    for(auto city : cities) {
+    for(City *city : cities) {
         if (city->getName() == cityName) {
             return city;
         }

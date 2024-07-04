@@ -69,5 +69,6 @@ void AddCityDialog::on_buttonBox_accepted()
 
 void AddCityDialog::on_buttonBox_rejected()
 {
+    qDebug() << "Input was canceled";
     done(QDialog::Rejected);        // QDialog::Rejected == 0
 }
