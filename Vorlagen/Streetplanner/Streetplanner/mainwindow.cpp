@@ -154,23 +154,19 @@ void MainWindow::on_checkBox_HideTestButtons_clicked()
 
 void MainWindow::on_pushButton_AddCity_clicked()
 {
-    AddCityDialog *addCityDialog = new AddCityDialog();
+    qDebug() << "on_pushButton_AddCity_clicked";
     int returnValue;
+    AddCityDialog *addCityDialog = new AddCityDialog();
     do {
         returnValue = addCityDialog->exec();
-        if(returnValue == QDialog::Rejected)
-            break;
-    } while (addCityDialog->isInputValid());
+    } while(returnValue == 2);              // 2 -> Input invalid
+    if(returnValue == QDialog::Rejected)    // close Button was clicked
+        return;
 
-    if(!addCityDialog->isInputValid())
-        return;
-    if(!returnValue)
-        return;
 
     qDebug() << "Input registered";
-    map.addCity(addCityDialog->createCity());
-    map.draw(scene);
-    addCityDialog->close();
+    this->map.addCity(addCityDialog->createCity());
+    this->map.draw(this->scene);
 
 }
 
