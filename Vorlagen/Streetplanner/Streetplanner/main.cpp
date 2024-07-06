@@ -10,6 +10,13 @@
 #include <QGraphicsTextItem>
 
 
+/**
+ * @brief main method and entrypoint of the application
+ * @param argc
+ * @param argv
+ * @return int
+ 
+ */
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

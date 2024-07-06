@@ -10,14 +10,29 @@ void City::draw(QGraphicsScene &scene) {
     cityNameLabel->setPos(x, y);
     scene.addItem(cityNameLabel);
 }
+
+/**
+ * @brief returns the name of the city
+ * @return QString city name
+ */
 QString City::getName()
 {
     return name;
 }
+
+/**
+ * @brief returns the x value of the city
+ * @return int x value
+ */
 int City::getX()
 {
     return x;
 }
+
+/**
+ * @brief returns the y value of the city
+ * @return int y value
+ */
 int City::getY()
 {
     return y;

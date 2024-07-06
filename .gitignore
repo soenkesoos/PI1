@@ -26,6 +26,7 @@
 
 # Ignoriere Betriebssystem spezifische Dateien
 **/.DS_Store
+.DS_Store
 Thumbs.db
 
 #build ordner

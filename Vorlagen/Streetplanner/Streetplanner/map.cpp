@@ -3,6 +3,11 @@
 Map::Map() {}
 
 
+/**
+ * @brief adds a city to the map
+ * 
+ * @param pCity pointer to the city object
+ */
 void Map::addCity(City *pCity) {
     if(pCity == nullptr){
         qDebug() << "Argument given to Map::addCity(City *pCity) was a nullptr";
@@ -13,6 +18,12 @@ void Map::addCity(City *pCity) {
 }
 
 
+/**
+ * @brief adds a street to the map
+ * 
+ * @param street pointer to the street object
+ * @return true if the street was added successfully
+ */
 bool Map::addStreet(Street* street)
 {
     for (City* city : street->getCities()) {
@@ -27,6 +38,11 @@ bool Map::addStreet(Street* street)
 }
 
 
+/**
+ * @brief draws all cities and streets on the scene
+ * 
+ * @param scene reference to the scene
+ */
 void Map::draw(QGraphicsScene &scene) {
     for(Street *s : streets)
         s->draw(scene);
@@ -36,6 +52,12 @@ void Map::draw(QGraphicsScene &scene) {
 }
 
 
+/**
+ * @brief finds a city by its name
+ * 
+ * @param cityName name of the city
+ * @return City* pointer to the city object
+ */
 City* Map::findCity(const QString cityName) const
 {
     for(City *city : cities) {
@@ -47,12 +69,22 @@ City* Map::findCity(const QString cityName) const
 }
 
 
+/**
+ * @brief returns all cities of the map
+ * 
+ * @return Vector of all City pointers
+ */
 QVector<City*> Map::getCities() const
 {
     return cities;
 }
 
 
+/**
+ * @brief returns all city names of the map
+ * 
+ * @return QStringList of all city names
+ */
 QStringList Map::getCityNames() const
 {
     QStringList city_names;
@@ -63,6 +95,12 @@ QStringList Map::getCityNames() const
 }
 
 
+/**
+ * @brief returns all streets of the map
+ * 
+ * @param city pointer to the city object
+ * @return QVector of all street pointers
+ */
 QVector<Street*> Map::getStreetList(const City* city) const
 {
     QVector<Street*> street_list;
@@ -75,6 +113,13 @@ QVector<Street*> Map::getStreetList(const City* city) const
 }
 
 
+/**
+ * @brief returns the opposite city for a given street and city
+ * 
+ * @param street pointer to the street object
+ * @param city pointer to the city object
+ * @return City* pointer to the opposite city along the street
+ */
 City* Map::getOppositeCity(const Street* street, const City* city) const
 {
     if (street->getCities().contains(city)) {
@@ -89,12 +134,22 @@ City* Map::getOppositeCity(const Street* street, const City* city) const
 }
 
 
+/**
+ * @brief returns the length of a street
+ * 
+ * @param street pointer to the street object
+ * @return double length of the street
+ */
 double Map::getLength(const Street* street) const
 {
     return street->getLength();
 }
 
 
+/**
+ * @brief clears the map
+ * 
+ */
 void Map::clear() {
     cities.clear();
     streets.clear();
