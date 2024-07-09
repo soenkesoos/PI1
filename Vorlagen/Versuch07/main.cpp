@@ -8,13 +8,13 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
 
-#include "Liste.h"
 #include "Student.h"
 
 int main()
 {
-    Liste studentenListe;
+    std::vector<Student> studentenListe;
     Student student;
 
     char abfrage;
@@ -25,15 +25,15 @@ int main()
     if (abfrage != 'j')
     {
         student = Student(34567, "Harro Simoneit", "19.06.1971", "Am Markt 1");
-        studentenListe.pushBack(student);
+        studentenListe.push_back(student);
         student = Student(74567, "Vera Schmitt", "23.07.1982", "Gartenstr. 23");
-        studentenListe.pushBack(student);
+        studentenListe.push_back(student);
         student = Student(12345, "Siggi Baumeister", "23.04.1983", "Ahornst.55");
-        studentenListe.pushBack(student);
+        studentenListe.push_back(student);
         student = Student(64567, "Paula Peters", "9.01.1981", "Weidenweg 12");
-        studentenListe.pushBack(student);
+        studentenListe.push_back(student);
         student = Student(23456, "Walter Rodenstock", "15.10.1963", "Wöllnerstr.9");
-        studentenListe.pushBack(student);
+        studentenListe.push_back(student);
     }
 
     do
@@ -48,7 +48,7 @@ int main()
                   << "(6): Datenbank in umgekehrter Reihenfolge ausgeben" << std::endl
                   << "(7): Datenelement löschen" << std::endl
                   << "(8): Datenelemente aus Datei einlesen" << std::endl
-                  << "(9): Datenbank sortieren" << std::endl
+                  << "(9): Daten in eine Datei speichern" << std::endl
                   << "(0): Beenden" << std::endl;
         std::cin >> abfrage;
         std::cin.ignore(10, '\n');
@@ -78,7 +78,7 @@ int main()
 
             student = Student(matNr, name, geburtstag, adresse);
 
-            studentenListe.pushFront(student);
+            studentenListe.insert(studentenListe.begin(), student);
         }
         break;
 
@@ -105,7 +105,7 @@ int main()
 
             student = Student(matNr, name, geburtstag, adresse);
 
-            studentenListe.pushBack(student);
+            studentenListe.push_back(student);
         }
         break;
 
@@ -114,10 +114,10 @@ int main()
         {
             if (!studentenListe.empty())
             {
-                student = studentenListe.dataFront();
+                student = studentenListe.front();
                 std::cout << "Der folgende Student ist geloescht worden:" << std::endl;
                 std::cout << student;
-                studentenListe.popFront();
+                studentenListe.erase(studentenListe.begin());
             }
             else
             {
@@ -131,10 +131,10 @@ int main()
         {
             if (!studentenListe.empty())
             {
-                student = studentenListe.dataBack();
+                student = studentenListe.back();
                 std::cout << "Der folgende Student wird geloescht:" << std::endl;
                 std::cout << student;
-                studentenListe.popBack();
+                studentenListe.pop_back();
             }
             else
             {
@@ -149,7 +149,10 @@ int main()
             if (!studentenListe.empty())
             {
                 std::cout << "Inhalt der Liste in fortlaufender Reihenfolge:" << std::endl;
-                studentenListe.ausgabeVorwaerts();
+                for (Student &student : studentenListe)
+                {
+                    std::cout << student;
+                }
             }
             else
             {
@@ -164,7 +167,8 @@ int main()
             if (!studentenListe.empty())
             {
                 std::cout << "Inhalt der Liste in umgekehrter Reihenfolge:" << std::endl;
-                studentenListe.ausgabeRueckwaerts();
+                for (std::vector<Student>::reverse_iterator it = studentenListe.rbegin() ; it != studentenListe.rend(); ++it)
+						std::cout << *it;
             }
             else
             {
@@ -182,17 +186,19 @@ int main()
 
             std::cin.ignore(1, '\n');
 
-            Student *studentPtr = studentenListe.findElement(matNr);
-            if (studentPtr != nullptr)
+            // Suche nach Matrikelnummer mit std::find
+            auto it = std::find_if(studentenListe.begin(), studentenListe.end(), [matNr](const Student& s) {
+                return s.getMatNr() == matNr;
+            });
+            if(it == studentenListe.end())
             {
-                std::cout << "Der folgende Student wird geloescht :" << std::endl;
-                std::cout << *studentPtr;
-                studentenListe.remove(studentPtr);
+                std::cout << "Es wurde kein Student mit der Matrikelnummer " << matNr << " gefunden." << std::endl;
+                break;
             }
-            else
-            {
-                std::cout << "Der Student mit der Matrikelnummer " << matNr << " ist nicht in der Liste enthalten.\n";
-            }
+            std::cout << "Der folgende Student wird geloescht:" << std::endl;
+            std::cout << *it;
+            studentenListe.erase(it);
+            break;
         }
         break;
 
@@ -240,18 +246,53 @@ int main()
 
                 // Student erstellen und in Liste einfuegen
                 student = Student(matNr, name, geburtstag, adresse);
-                studentenListe.pushBack(student);
+                studentenListe.push_back(student);
 
                 // Matrikelnummer einlesen
                 dateiStream >> matNr;
             }
         }
         break;
-
-        // Datenbank sortieren
+                // Daten in eine Datei speichern
         case '9':
-            std::cout << "Die Liste wird sortiert.\n";
-            studentenListe.sort();
+        {
+            if(studentenListe.empty())
+            {
+                std::cout << "Es sind keine Daten vorhanden, die abgespeichert werden könnten." << std::endl;
+
+                break;
+            }
+
+            std::cout << "Geben sie nun Bitte den Dateinamen an. (ENTER für 'longRandomStudents.txt)'";
+
+            std::string filename;
+            getline(std::cin, filename);    // ganze Zeile einlesen inklusive aller Leerzeichen
+
+            if (filename.empty()) filename = "longRandomStudents.txt";
+
+            std::ofstream outputFilestream;
+            outputFilestream.open(filename);
+
+            if (!outputFilestream)
+            {
+                std::cout << " Fehler beim oeffnen der Datei !";
+                exit(1) ;
+            }
+
+            for(const Student& i : studentenListe) {
+                outputFilestream << i.getMatNr() << std::endl;
+                outputFilestream << i.getName() << std::endl;
+                outputFilestream << i.getGeburtstag() << std::endl;
+                outputFilestream << i.getAdresse() << std::endl;
+            }
+
+            outputFilestream.close();
+
+            }
+            break;
+        case '10':
+            std::cout << "Sortieren der Liste nach Matrikelnummer\n";
+            std::sort(studentenListe.begin(), studentenListe.end());
             break;
 
         case '0':

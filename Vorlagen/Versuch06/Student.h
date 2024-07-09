@@ -16,7 +16,10 @@ public:
     std::string getName() const;
     std::string getGeburtstag() const;
     std::string getAdresse() const;
-    void ausgabe() const;
+    void ausgabe(std::ostream& out) const;
+    bool operator<(const Student& other) const;
+    bool operator>(const Student& other) const;
+    bool operator==(const Student& other) const;
 private:
     unsigned int matNr;
     std::string name;
