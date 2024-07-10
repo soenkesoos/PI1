@@ -290,7 +290,7 @@ int main()
 
             }
             break;
-        case '10':
+        case 'a':
             std::cout << "Sortieren der Liste nach Matrikelnummer\n";
             std::sort(studentenListe.begin(), studentenListe.end());
             break;

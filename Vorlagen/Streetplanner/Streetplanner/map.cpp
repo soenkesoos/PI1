@@ -151,6 +151,10 @@ double Map::getLength(const Street* street) const
  * 
  */
 void Map::clear() {
+    for(City* city : cities)
+        delete city;
+    for(Street* street : streets)
+        delete street;
     cities.clear();
     streets.clear();
 }

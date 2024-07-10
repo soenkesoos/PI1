@@ -161,7 +161,7 @@ void MainWindow::on_pushButton_AddCity_clicked()
     AddCityDialog *addCityDialog = new AddCityDialog();
     do {
         returnValue = addCityDialog->exec();
-    } while(returnValue == 2);              // 2 -> Input invalid
+    } while(returnValue == 2 || map.findCity(addCityDialog->getCityName()) != NULL);              // 2 -> Input invalid
     if(returnValue == QDialog::Rejected)    // close Button was clicked
         return;
 
