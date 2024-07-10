@@ -23,6 +23,10 @@ Medium::~Medium(void)
 {
 }
 
+bool Medium::isAusgeliehen()
+{
+    return status;
+}
 
 void Medium::ausgabe() const
 {

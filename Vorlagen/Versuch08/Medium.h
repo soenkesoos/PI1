@@ -28,6 +28,8 @@ public:
      */
     Medium(std::string initTitel);
 
+    bool isAusgeliehen();
+
     /*!
      * @brief virtueller Destruktor
      */
